@@ -6,7 +6,7 @@ const {
   useSyncedState
 } = widget
 
-function ThreeItemList() {
+function WpPageModel() {
   const placeholders = ["path", "template php", "memo"]
   const [title, setTitle] = useSyncedState("title","title")
   const [items, setItem] = useSyncedState("items",["", "", ""])
@@ -78,4 +78,4 @@ function ThreeItemList() {
 
   )
 }
-widget.register(ThreeItemList)
+widget.register(WpPageModel)
