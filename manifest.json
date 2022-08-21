@@ -1,0 +1,11 @@
+{
+  "name": "TrheeItemList",
+  "id": "1143100594030697423",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figjam"
+  ],
+  "containsWidget": true,
+  "widgetApi": "1.0.0"
+}
