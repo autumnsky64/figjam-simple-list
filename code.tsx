@@ -8,8 +8,11 @@ const {
 
 function WpPageModel() {
   const placeholders = ["path", "template php", "memo"]
-  const [title, setTitle] = useSyncedState("title","title")
+  const [title, setTitle] = useSyncedState("title","")
   const [items, setItem] = useSyncedState("items",["", "", ""])
+
+  const borderColor = "#696969"
+  const titleBgColor = "#e0ffff"
 
   return (
     <AutoLayout
@@ -17,22 +20,21 @@ function WpPageModel() {
       direction="vertical"
       verticalAlignItems="center"
       horizontalAlignItems="center"
-      stroke="#ccc"
+      stroke={borderColor}
     >
       <AutoLayout
         width="fill-parent"
         padding={{
           vertical: 16
         }}
-        fill="#ada"
-        stroke="#ada"
+        fill={titleBgColor}
+        stroke={titleBgColor}
       >
         <Input
-          placeholder="title"
+          placeholder="page title"
           value={title}
           width="fill-parent"
           fontSize={24}
-          fill="#040"
           horizontalAlignText="center"
           onTextEditEnd={(event)=> setTitle(event.characters)}
           />
@@ -44,8 +46,7 @@ function WpPageModel() {
             height={1}
             width="fill-parent"
             name="Border"
-            fill="#ccc"
-            hidden={i === 0 ? true : false}
+            fill={borderColor}
           >
           </Frame>
           <AutoLayout
