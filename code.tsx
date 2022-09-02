@@ -7,8 +7,7 @@ const {
   usePropertyMenu
 } = widget
 
-function WpPageModel() {
-  const placeholders = ["path", "template php", "memo"]
+function SimpleList() {
   const [title, setTitle] = useSyncedState("title","")
   const [items, setItem] = useSyncedState("items",["", "", ""])
 
@@ -57,7 +56,7 @@ function WpPageModel() {
         stroke={titleBgColor}
       >
         <Input
-          placeholder="page title"
+          placeholder="title"
           value={title}
           width="fill-parent"
           fontSize={24}
@@ -85,7 +84,6 @@ function WpPageModel() {
             >
             <Input
               value={item}
-              placeholder={placeholders[i]}
               width="fill-parent"
               height={48}
               fontSize={24}
@@ -105,4 +103,4 @@ function WpPageModel() {
 
   )
 }
-widget.register(WpPageModel)
+widget.register(SimpleList)
