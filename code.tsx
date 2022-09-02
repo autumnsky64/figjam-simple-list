@@ -3,7 +3,8 @@ const {
   AutoLayout,
   Input,
   Frame,
-  useSyncedState
+  useSyncedState,
+  usePropertyMenu
 } = widget
 
 function WpPageModel() {
@@ -11,6 +12,31 @@ function WpPageModel() {
   const [title, setTitle] = useSyncedState("title","")
   const [items, setItem] = useSyncedState("items",["", "", ""])
 
+  usePropertyMenu(
+    [
+      {
+        itemType: 'action',
+        tooltip: 'Add Row',
+        propertyName: 'addRow'
+      },
+      {
+        itemType: 'action',
+        tooltip: 'Delete Row',
+        propertyName: 'deleteLastRow'
+      }
+    ],
+    ({ propertyName }) => {
+      if (propertyName === 'addRow') {
+        setItem((current) => [...current, ''])
+      } else if (propertyName === 'deleteLastRow') {
+        setItem((current) => {
+          const newData = [...current]
+          newData.pop()
+          return newData
+        })
+      }
+    }
+  )
   const borderColor = "#696969"
   const titleBgColor = "#e0ffff"
 
