@@ -1,33 +1,23 @@
 const { widget } = figma
-const {
-  AutoLayout,
-  Input,
-  Frame,
-  useSyncedState,
-  usePropertyMenu
-} = widget
+const { AutoLayout, Input, Frame, useSyncedState, usePropertyMenu } = widget
 
 function SimpleList() {
-  const [title, setTitle] = useSyncedState("title","")
-  const [items, setItem] = useSyncedState("items",["", "", ""])
+  const [title, setTitle] = useSyncedState("title", "")
+  const [items, setItem] = useSyncedState("items", ["", "", ""])
 
   usePropertyMenu(
     [
+      { itemType: "action", tooltip: "Add Row", propertyName: "addRow" },
       {
-        itemType: 'action',
-        tooltip: 'Add Row',
-        propertyName: 'addRow'
-      },
-      {
-        itemType: 'action',
-        tooltip: 'Delete Row',
-        propertyName: 'deleteLastRow'
+        itemType: "action",
+        tooltip: "Delete Row",
+        propertyName: "deleteLastRow"
       }
     ],
     ({ propertyName }) => {
-      if (propertyName === 'addRow') {
-        setItem((current) => [...current, ''])
-      } else if (propertyName === 'deleteLastRow') {
+      if (propertyName === "addRow") {
+        setItem((current) => [...current, ""])
+      } else if (propertyName === "deleteLastRow") {
         setItem((current) => {
           const newData = [...current]
           newData.pop()
@@ -61,46 +51,43 @@ function SimpleList() {
           width="fill-parent"
           fontSize={24}
           horizontalAlignText="center"
-          onTextEditEnd={(event)=> setTitle(event.characters)}
-          />
+          onTextEditEnd={(event) => setTitle(event.characters)}
+        />
       </AutoLayout>
-      {items.map((item,i) => {
-        return(
-        <>
-          <Frame
-            height={1}
-            width="fill-parent"
-            name="Border"
-            fill={borderColor}
-          >
-          </Frame>
-          <AutoLayout
-            width="fill-parent"
-            padding={{
-              vertical: 16,
-              bottom:0
-            }}
-            fill="#fff"
-            >
-            <Input
-              value={item}
+      {items.map((item, i) => {
+        return (
+          <>
+            <Frame
+              height={1}
               width="fill-parent"
-              height={48}
-              fontSize={24}
-              horizontalAlignText="center"
-              onTextEditEnd={(event)=> {
-                const newItems = [...items]
-                newItems[i] = event.characters
-                setItem(newItems)
-                }
-              }
+              name="Border"
+              fill={borderColor}
+            ></Frame>
+            <AutoLayout
+              width="fill-parent"
+              padding={{
+                vertical: 16,
+                bottom: 0
+              }}
+              fill="#fff"
+            >
+              <Input
+                value={item}
+                width="fill-parent"
+                height={48}
+                fontSize={24}
+                horizontalAlignText="center"
+                onTextEditEnd={(event) => {
+                  const newItems = [...items]
+                  newItems[i] = event.characters
+                  setItem(newItems)
+                }}
               />
-          </AutoLayout>
-        </>
+            </AutoLayout>
+          </>
         )
       })}
     </AutoLayout>
-
   )
 }
 widget.register(SimpleList)
