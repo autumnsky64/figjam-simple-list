@@ -1,7 +1,7 @@
 {
-  "name": "TrheeItemList",
+  "name": "Simple List",
   "version": "1.0.0",
-  "description": "Your Figma widget",
+  "description": "Figma Simple List widget",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "watch": "npm run build -- --watch"
